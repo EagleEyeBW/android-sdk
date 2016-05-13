@@ -43,58 +43,33 @@ public class Settings implements SettingsCallback {
         void onHistoryUploadIntervalChange(long newHistoryUploadInterval);
     }
 
-    private static final boolean DEFAULT_SHOULD_RESTORE_BEACON_STATE = true;
-
-    private static final long DEFAULT_LAYOUT_UPDATE_INTERVAL = Constants.Time.ONE_DAY;
-
-    private static final long DEFAULT_HISTORY_UPLOAD_INTERVAL = 30 * Constants.Time.ONE_MINUTE;
-
-    private static final long DEFAULT_SETTINGS_UPDATE_INTERVAL = Constants.Time.ONE_DAY;
-
-    private static final long DEFAULT_EXIT_TIMEOUT_MILLIS = 9 * Constants.Time.ONE_SECOND;
-
-    public static final long DEFAULT_FOREGROUND_SCAN_TIME = 10 * Constants.Time.ONE_SECOND;
-    public static final long DEFAULT_FOREGROUND_WAIT_TIME = DEFAULT_FOREGROUND_SCAN_TIME;
-
-    public static final long DEFAULT_BACKGROUND_WAIT_TIME = 2  * Constants.Time.ONE_MINUTE;
-    public static final long DEFAULT_BACKGROUND_SCAN_TIME = 20 * Constants.Time.ONE_SECOND;
-
-    public static final long DEFAULT_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT = Constants.Time.ONE_MINUTE;
-    private static final long DEFAULT_MESSAGE_DELAY_WINDOW_LENGTH = Constants.Time.ONE_SECOND * 10;
-
-    private static final long DEFAULT_MILLIS_BEETWEEN_RETRIES = 5 * Constants.Time.ONE_SECOND;
-
-    private static final long DEFAULT_CACHE_TTL = 30 * Constants.Time.ONE_DAY;
-
-    private long cacheTtl = DEFAULT_CACHE_TTL;
-
-    private static final int DEFAULT_MAX_RETRIES = 3;
+    private long cacheTtl = SettingsDefaults.DEFAULT_CACHE_TTL;
 
     private final Platform platform;
     private final SharedPreferences preferences;
 
-    private long layoutUpdateInterval = DEFAULT_LAYOUT_UPDATE_INTERVAL;
+    private long layoutUpdateInterval = SettingsDefaults.DEFAULT_LAYOUT_UPDATE_INTERVAL;
 
-    private long messageDelayWindowLength = DEFAULT_MESSAGE_DELAY_WINDOW_LENGTH;
+    private long messageDelayWindowLength = SettingsDefaults.DEFAULT_MESSAGE_DELAY_WINDOW_LENGTH;
 
-    private long exitTimeoutMillis = DEFAULT_EXIT_TIMEOUT_MILLIS;
+    private long exitTimeoutMillis = SettingsDefaults.DEFAULT_EXIT_TIMEOUT_MILLIS;
 
-    private long foreGroundScanTime = DEFAULT_FOREGROUND_SCAN_TIME;
-    private long foreGroundWaitTime = DEFAULT_FOREGROUND_WAIT_TIME;
+    private long foreGroundScanTime = SettingsDefaults.DEFAULT_FOREGROUND_SCAN_TIME;
+    private long foreGroundWaitTime = SettingsDefaults.DEFAULT_FOREGROUND_WAIT_TIME;
 
-    private long backgroundScanTime = DEFAULT_BACKGROUND_SCAN_TIME;
-    private long backgroundWaitTime = DEFAULT_BACKGROUND_WAIT_TIME;
+    private long backgroundScanTime = SettingsDefaults.DEFAULT_BACKGROUND_SCAN_TIME;
+    private long backgroundWaitTime = SettingsDefaults.DEFAULT_BACKGROUND_WAIT_TIME;
 
-    private long millisBetweenRetries =  DEFAULT_MILLIS_BEETWEEN_RETRIES;
-    private int maxRetries = DEFAULT_MAX_RETRIES;
+    private long millisBetweenRetries =  SettingsDefaults.DEFAULT_MILLIS_BEETWEEN_RETRIES;
+    private int maxRetries = SettingsDefaults.DEFAULT_MAX_RETRIES;
 
-    private long historyUploadInterval = DEFAULT_HISTORY_UPLOAD_INTERVAL;
+    private long historyUploadInterval = SettingsDefaults.DEFAULT_HISTORY_UPLOAD_INTERVAL;
 
-    private long cleanBeaconMapRestartTimeout = DEFAULT_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT;
+    private long cleanBeaconMapRestartTimeout = SettingsDefaults.DEFAULT_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT;
     private Long revision = null;
-    private long settingsUpdateInterval = DEFAULT_SETTINGS_UPDATE_INTERVAL;
+    private long settingsUpdateInterval = SettingsDefaults.DEFAULT_SETTINGS_UPDATE_INTERVAL;
 
-    private boolean shouldRestoreBeaconStates = DEFAULT_SHOULD_RESTORE_BEACON_STATE;
+    private boolean shouldRestoreBeaconStates = SettingsDefaults.DEFAULT_SHOULD_RESTORE_BEACON_STATE;
 
     private SettingsCallback callback = SettingsCallback.NONE;
 
@@ -105,23 +80,23 @@ public class Settings implements SettingsCallback {
 
     public void restoreValuesFromPreferences(){
         if (preferences != null) {
-            exitTimeoutMillis = preferences.getLong(Constants.SharedPreferencesKeys.Scanner.TIMEOUT_MILLIES, DEFAULT_EXIT_TIMEOUT_MILLIS);
-            foreGroundScanTime = preferences.getLong(Constants.SharedPreferencesKeys.Scanner.FORE_GROUND_SCAN_TIME, DEFAULT_FOREGROUND_SCAN_TIME);
-            foreGroundWaitTime = preferences.getLong(Constants.SharedPreferencesKeys.Scanner.FORE_GROUND_WAIT_TIME, DEFAULT_FOREGROUND_WAIT_TIME);
-            backgroundScanTime = preferences.getLong(Constants.SharedPreferencesKeys.Scanner.BACKGROUND_SCAN_TIME, DEFAULT_BACKGROUND_SCAN_TIME);
-            backgroundWaitTime = preferences.getLong(Constants.SharedPreferencesKeys.Scanner.BACKGROUND_WAIT_TIME, DEFAULT_BACKGROUND_WAIT_TIME);
-            cleanBeaconMapRestartTimeout = preferences.getLong(Constants.SharedPreferencesKeys.Scanner.CLEAN_BEACON_MAP_RESTART_TIMEOUT, DEFAULT_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT);
+            exitTimeoutMillis = preferences.getLong(Constants.SharedPreferencesKeys.Scanner.TIMEOUT_MILLIES, SettingsDefaults.DEFAULT_EXIT_TIMEOUT_MILLIS);
+            foreGroundScanTime = preferences.getLong(Constants.SharedPreferencesKeys.Scanner.FORE_GROUND_SCAN_TIME, SettingsDefaults.DEFAULT_FOREGROUND_SCAN_TIME);
+            foreGroundWaitTime = preferences.getLong(Constants.SharedPreferencesKeys.Scanner.FORE_GROUND_WAIT_TIME, SettingsDefaults.DEFAULT_FOREGROUND_WAIT_TIME);
+            backgroundScanTime = preferences.getLong(Constants.SharedPreferencesKeys.Scanner.BACKGROUND_SCAN_TIME, SettingsDefaults.DEFAULT_BACKGROUND_SCAN_TIME);
+            backgroundWaitTime = preferences.getLong(Constants.SharedPreferencesKeys.Scanner.BACKGROUND_WAIT_TIME, SettingsDefaults.DEFAULT_BACKGROUND_WAIT_TIME);
+            cleanBeaconMapRestartTimeout = preferences.getLong(Constants.SharedPreferencesKeys.Scanner.CLEAN_BEACON_MAP_RESTART_TIMEOUT, SettingsDefaults.DEFAULT_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT);
             revision = preferences.getLong(Constants.SharedPreferencesKeys.Settings.REVISION, Long.MIN_VALUE);
 
-            settingsUpdateInterval = preferences.getLong(Constants.SharedPreferencesKeys.Settings.UPDATE_INTERVAL, DEFAULT_SETTINGS_UPDATE_INTERVAL);
+            settingsUpdateInterval = preferences.getLong(Constants.SharedPreferencesKeys.Settings.UPDATE_INTERVAL, SettingsDefaults.DEFAULT_SETTINGS_UPDATE_INTERVAL);
 
-            maxRetries = preferences.getInt(Constants.SharedPreferencesKeys.Network.MAX_RESOLVE_RETRIES, DEFAULT_MAX_RETRIES);
-            millisBetweenRetries =   preferences.getLong(Constants.SharedPreferencesKeys.Network.TIME_BETWEEN_RESOLVE_RETRIES, DEFAULT_MILLIS_BEETWEEN_RETRIES);
+            maxRetries = preferences.getInt(Constants.SharedPreferencesKeys.Network.MAX_RESOLVE_RETRIES, SettingsDefaults.DEFAULT_MAX_RETRIES);
+            millisBetweenRetries =   preferences.getLong(Constants.SharedPreferencesKeys.Network.TIME_BETWEEN_RESOLVE_RETRIES, SettingsDefaults.DEFAULT_MILLIS_BEETWEEN_RETRIES);
 
-            historyUploadInterval = preferences.getLong(Constants.SharedPreferencesKeys.Network.HISTORY_UPLOAD_INTERVAL, DEFAULT_HISTORY_UPLOAD_INTERVAL);
-            layoutUpdateInterval = preferences.getLong(Constants.SharedPreferencesKeys.Network.BEACON_LAYOUT_UPDATE_INTERVAL, DEFAULT_HISTORY_UPLOAD_INTERVAL);
-            shouldRestoreBeaconStates = preferences.getBoolean(Constants.SharedPreferencesKeys.Scanner.SHOULD_RESTORE_BEACON_STATES, DEFAULT_SHOULD_RESTORE_BEACON_STATE);
-            cacheTtl = preferences.getLong(Constants.SharedPreferencesKeys.Platform.CACHE_OBJECT_TIME_TO_LIVE, DEFAULT_CACHE_TTL);
+            historyUploadInterval = preferences.getLong(Constants.SharedPreferencesKeys.Network.HISTORY_UPLOAD_INTERVAL, SettingsDefaults.DEFAULT_HISTORY_UPLOAD_INTERVAL);
+            layoutUpdateInterval = preferences.getLong(Constants.SharedPreferencesKeys.Network.BEACON_LAYOUT_UPDATE_INTERVAL, SettingsDefaults.DEFAULT_HISTORY_UPLOAD_INTERVAL);
+            shouldRestoreBeaconStates = preferences.getBoolean(Constants.SharedPreferencesKeys.Scanner.SHOULD_RESTORE_BEACON_STATES, SettingsDefaults.DEFAULT_SHOULD_RESTORE_BEACON_STATE);
+            cacheTtl = preferences.getLong(Constants.SharedPreferencesKeys.Platform.CACHE_OBJECT_TIME_TO_LIVE, SettingsDefaults.DEFAULT_CACHE_TTL);
             advertisingIdentifier = preferences.getString(Constants.SharedPreferencesKeys.Network.ADVERTISING_IDENTIFIER, null);
         }
     }
@@ -129,7 +104,6 @@ public class Settings implements SettingsCallback {
     public void updateValues() {
         platform.getTransport().getSettings(this);
     }
-
 
     @Override
     public void nothingChanged() {
@@ -152,36 +126,36 @@ public class Settings implements SettingsCallback {
             preferences.edit().clear().apply();
         }
 
-        exitTimeoutMillis = settings.optLong("scanner.exitTimeoutMillis", DEFAULT_EXIT_TIMEOUT_MILLIS);
-        foreGroundScanTime = settings.optLong("scanner.foreGroundScanTime", DEFAULT_FOREGROUND_SCAN_TIME);
-        foreGroundWaitTime = settings.optLong("scanner.foreGroundWaitTime", DEFAULT_FOREGROUND_WAIT_TIME);
+        exitTimeoutMillis = settings.optLong("scanner.exitTimeoutMillis", SettingsDefaults.DEFAULT_EXIT_TIMEOUT_MILLIS);
+        foreGroundScanTime = settings.optLong("scanner.foreGroundScanTime", SettingsDefaults.DEFAULT_FOREGROUND_SCAN_TIME);
+        foreGroundWaitTime = settings.optLong("scanner.foreGroundWaitTime", SettingsDefaults.DEFAULT_FOREGROUND_WAIT_TIME);
 
-        backgroundScanTime = settings.optLong("scanner.backgroundScanTime", DEFAULT_BACKGROUND_SCAN_TIME);
-        backgroundWaitTime = settings.optLong("scanner.backgroundWaitTime", DEFAULT_BACKGROUND_WAIT_TIME);
+        backgroundScanTime = settings.optLong("scanner.backgroundScanTime", SettingsDefaults.DEFAULT_BACKGROUND_SCAN_TIME);
+        backgroundWaitTime = settings.optLong("scanner.backgroundWaitTime", SettingsDefaults.DEFAULT_BACKGROUND_WAIT_TIME);
 
-        cleanBeaconMapRestartTimeout = settings.optLong("scanner.cleanBeaconMapRestartTimeout", DEFAULT_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT);
+        cleanBeaconMapRestartTimeout = settings.optLong("scanner.cleanBeaconMapRestartTimeout", SettingsDefaults.DEFAULT_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT);
 
-        messageDelayWindowLength = settings.optLong("presenter.messageDelayWindowLength", DEFAULT_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT);
+        messageDelayWindowLength = settings.optLong("presenter.messageDelayWindowLength", SettingsDefaults.DEFAULT_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT);
 
-        cacheTtl = settings.optLong("cache.objectTTL", DEFAULT_CACHE_TTL);
+        cacheTtl = settings.optLong("cache.objectTTL", SettingsDefaults.DEFAULT_CACHE_TTL);
 
-        maxRetries = settings.optInt("network.maximumResolveRetries", DEFAULT_MAX_RETRIES);
-        millisBetweenRetries = settings.optLong("network.millisBetweenRetries", DEFAULT_MILLIS_BEETWEEN_RETRIES);
-        shouldRestoreBeaconStates = settings.optBoolean("scanner.restoreBeaconStates", DEFAULT_SHOULD_RESTORE_BEACON_STATE);
+        maxRetries = settings.optInt("network.maximumResolveRetries", SettingsDefaults.DEFAULT_MAX_RETRIES);
+        millisBetweenRetries = settings.optLong("network.millisBetweenRetries", SettingsDefaults.DEFAULT_MILLIS_BEETWEEN_RETRIES);
+        shouldRestoreBeaconStates = settings.optBoolean("scanner.restoreBeaconStates", SettingsDefaults.DEFAULT_SHOULD_RESTORE_BEACON_STATE);
 
-        long newHistoryUploadIntervalMillis = settings.optLong("network.historyUploadInterval", DEFAULT_HISTORY_UPLOAD_INTERVAL);
+        long newHistoryUploadIntervalMillis = settings.optLong("network.historyUploadInterval", SettingsDefaults.DEFAULT_HISTORY_UPLOAD_INTERVAL);
         if (newHistoryUploadIntervalMillis != historyUploadInterval){
             historyUploadInterval = newHistoryUploadIntervalMillis;
             callback.onHistoryUploadIntervalChange(newHistoryUploadIntervalMillis);
         }
 
-        long newLayoutUpdateInterval = settings.optLong("network.beaconLayoutUpdateInterval", DEFAULT_LAYOUT_UPDATE_INTERVAL);
+        long newLayoutUpdateInterval = settings.optLong("network.beaconLayoutUpdateInterval", SettingsDefaults.DEFAULT_LAYOUT_UPDATE_INTERVAL);
         if (newLayoutUpdateInterval != layoutUpdateInterval){
             layoutUpdateInterval = newLayoutUpdateInterval;
             callback.onSettingsBeaconLayoutUpdateIntervalChange(newLayoutUpdateInterval);
         }
 
-        final long newSettingsUpdateInterval = settings.optLong("settings.updateTime", DEFAULT_SETTINGS_UPDATE_INTERVAL);
+        final long newSettingsUpdateInterval = settings.optLong("settings.updateTime", SettingsDefaults.DEFAULT_SETTINGS_UPDATE_INTERVAL);
         if (newSettingsUpdateInterval != settingsUpdateInterval){
             settingsUpdateInterval = newSettingsUpdateInterval;
             callback.onSettingsUpdateIntervalChange(newSettingsUpdateInterval);

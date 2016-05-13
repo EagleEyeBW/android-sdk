@@ -69,7 +69,7 @@ public class TheSettingsShould extends AndroidTestCase {
         //simulating a settings request without content
         tested.onSettingsFound(new JSONObject());
 
-        Assertions.assertThat(tested.getBackgroundWaitTime()).isEqualTo(Settings.DEFAULT_BACKGROUND_WAIT_TIME);
+        Assertions.assertThat(tested.getBackgroundWaitTime()).isEqualTo(SettingsDefaults.DEFAULT_BACKGROUND_WAIT_TIME);
     }
 
     public void test_advertising_id_gets_persisted() throws Exception {

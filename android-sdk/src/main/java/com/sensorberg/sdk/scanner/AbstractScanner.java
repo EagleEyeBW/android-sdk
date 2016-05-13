@@ -19,13 +19,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
 
+import com.sensorberg.sdk.settings.SettingsDefaults;
+
 public abstract class AbstractScanner implements RunLoop.MessageHandlerCallback, Platform.ForegroundStateListener {
 
     private static final long NEVER_STOPPED = 0L;
     final Platform platform;
 
-    long waitTime = Settings.DEFAULT_BACKGROUND_WAIT_TIME;
-    long scanTime = Settings.DEFAULT_BACKGROUND_SCAN_TIME;
+    long waitTime = SettingsDefaults.DEFAULT_BACKGROUND_WAIT_TIME;
+    long scanTime = SettingsDefaults.DEFAULT_BACKGROUND_SCAN_TIME;
    
     private final Settings settings;
 

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <long name="DEFAULT_LAYOUT_UPDATE_INTERVAL">86400000</long>
+    <long name="min_speed">5</long>
+</resources>

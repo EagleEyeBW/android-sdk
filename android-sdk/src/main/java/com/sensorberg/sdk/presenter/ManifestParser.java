@@ -19,7 +19,6 @@ public class ManifestParser {
         actionIntent.setAction(actionString);
     }
 
-
     @SuppressWarnings("EmptyCatchBlock")
     public static List<BroadcastReceiver> findBroadcastReceiver(Context context) {
         List<BroadcastReceiver> result = new ArrayList<>();

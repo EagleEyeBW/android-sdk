@@ -4,6 +4,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.test.AndroidTestCase;
 
 import com.sensorberg.sdk.settings.Settings;
+import com.sensorberg.sdk.settings.SettingsDefaults;
 import com.sensorberg.sdk.testUtils.TestPlatform;
 
 import org.junit.Before;
@@ -43,7 +44,7 @@ public class TheBluetoothChangesShould {
 
     @Test
     public void assert_random_values_are_within_range() {
-        assertThat(RANDOM_VALUE_THAT_IS_SHORTER_THAN_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT_BUT_LONGER_THAN_EXIT_EVENT_DELAY).isLessThan(Settings.DEFAULT_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT);
+        assertThat(RANDOM_VALUE_THAT_IS_SHORTER_THAN_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT_BUT_LONGER_THAN_EXIT_EVENT_DELAY).isLessThan(SettingsDefaults.DEFAULT_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT);
         assertThat(RANDOM_VALUE_THAT_IS_SHORTER_THAN_CLEAN_BEACONMAP_ON_RESTART_TIMEOUT_BUT_LONGER_THAN_EXIT_EVENT_DELAY).isGreaterThan(settings.getExitTimeout());
     }
 
