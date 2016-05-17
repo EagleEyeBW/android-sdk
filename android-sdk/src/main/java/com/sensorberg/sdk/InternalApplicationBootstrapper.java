@@ -67,7 +67,6 @@ public class InternalApplicationBootstrapper extends MinimalBootstrapper impleme
         scanner.addScannerListener(this);
         resolver.addResolverListener(this);
 
-
         plattform.restorePendingIntents();
 
         ScannerBroadcastReceiver.setManifestReceiverEnabled(true, plattform.getContext());

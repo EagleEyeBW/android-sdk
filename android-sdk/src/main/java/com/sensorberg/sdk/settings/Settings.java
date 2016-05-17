@@ -11,7 +11,7 @@ import com.sensorberg.sdk.internal.transport.SettingsCallback;
 import org.json.JSONObject;
 
 public class Settings implements SettingsCallback {
-
+    
     private String advertisingIdentifier;
 
     public void setCallback(SettingsCallback callback) {
@@ -36,7 +36,7 @@ public class Settings implements SettingsCallback {
             }
         };
 
-        void onSettingsUpdateIntervalChange(Long updateIntervalMillies);
+        void onSettingsUpdateIntervalChange(Long updateIntervalMillis);
 
         void onSettingsBeaconLayoutUpdateIntervalChange(long newLayoutUpdateInterval);
 
@@ -196,7 +196,6 @@ public class Settings implements SettingsCallback {
             editor.putLong(Constants.SharedPreferencesKeys.Network.TIME_BETWEEN_RESOLVE_RETRIES, millisBetweenRetries);
             editor.putLong(Constants.SharedPreferencesKeys.Network.HISTORY_UPLOAD_INTERVAL, historyUploadInterval);
             editor.putLong(Constants.SharedPreferencesKeys.Network.BEACON_LAYOUT_UPDATE_INTERVAL, layoutUpdateInterval);
-
 
             editor.apply();
         }
