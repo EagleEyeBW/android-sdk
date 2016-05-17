@@ -8,8 +8,6 @@ import com.sensorberg.sdk.Constants;
  */
 public class SettingsDefaults {
 
-    public static final boolean DEFAULT_SHOULD_RESTORE_BEACON_STATE = true;
-
     //Timing/clock constants
     public static final long DEFAULT_LAYOUT_UPDATE_INTERVAL = Constants.Time.ONE_DAY;
     public static final long DEFAULT_HISTORY_UPLOAD_INTERVAL = 30 * Constants.Time.ONE_MINUTE;
@@ -26,4 +24,5 @@ public class SettingsDefaults {
 
     //Other Defaults
     public static final int DEFAULT_MAX_RETRIES = 3;
+    public static final boolean DEFAULT_SHOULD_RESTORE_BEACON_STATE = true;
 }
