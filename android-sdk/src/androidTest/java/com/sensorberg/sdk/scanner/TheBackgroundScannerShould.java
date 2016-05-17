@@ -17,7 +17,6 @@ public class TheBackgroundScannerShould extends AndroidTestCase{
     private TestPlatform platform;
     private UIScanner tested;
 
-
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -45,7 +44,6 @@ public class TheBackgroundScannerShould extends AndroidTestCase{
        ScannerListener mockListener = Mockito.mock(ScannerListener.class);
        tested.addScannerListener(mockListener);
 
-
        platform.fakeIBeaconSighting();
 
        verifyZeroInteractions(mockListener);
@@ -62,7 +60,6 @@ public class TheBackgroundScannerShould extends AndroidTestCase{
 
         ScannerListener mockListener = Mockito.mock(ScannerListener.class);
         tested.addScannerListener(mockListener);
-
 
         platform.fakeIBeaconSighting();
 
