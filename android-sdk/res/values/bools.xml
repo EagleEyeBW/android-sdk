@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <bool name="DEFAULT_SHOULD_RESTORE_BEACON_STATE">true</bool>
-</resources>

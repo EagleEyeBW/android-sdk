@@ -11,7 +11,7 @@ import com.sensorberg.sdk.internal.transport.SettingsCallback;
 import org.json.JSONObject;
 
 public class Settings implements SettingsCallback {
-    
+
     private String advertisingIdentifier;
 
     public void setCallback(SettingsCallback callback) {
